@@ -1,12 +1,12 @@
-{% extends "template.html" %}
+{% extends "layout.html" %}
 
 {% block body %}
-<p>
-  Hei maailma!
-</p>
-<div>
-{% for esine in lista %}
-<div>{{esine}}</div>
-{% endfor %}
-</div>
+  <p>
+    Hei maailma!
+  </p>
+  <div>
+  {% for item in items %}
+    <div>{{item}}</div>
+  {% endfor %}
+  </div>
 {% endblock %}
