@@ -1,0 +1,12 @@
+{% extends "template.html" %}
+
+{% block body %}
+<p>
+  Hei maailma!
+</p>
+<div>
+{% for esine in lista %}
+<div>{{esine}}</div>
+{% endfor %}
+</div>
+{% endblock %}
