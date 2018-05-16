@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div>
+        {% for book in books %}
+        <div>
+            {{ book.title }}
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
