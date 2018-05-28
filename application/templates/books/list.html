@@ -4,7 +4,10 @@
     <div>
         {% for book in books %}
         <div>
-            {{ book.title }}
+            {{ book }}
+            <form method="POST" action="{{ url_for ('change_availability', book_id=book.id) }}">
+                <input type="submit" value="change availability"/>
+            </form>
         </div>
         {% endfor %}
     </div>

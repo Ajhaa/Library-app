@@ -12,10 +12,19 @@ def books_form():
 
 @app.route("/books/", methods=["POST"])
 def books_create():
-    new_book = Book(request.form.get("title"))
+    new_book = Book(request.form.get("title"), request.form.get("author"))
 
     db.session().add(new_book)
     db.session().commit()
 
     return redirect(url_for("books_index"))
+
+@app.route("/books/<book_id>/", methods=["POST"])
+def change_availability(book_id):
+    book = Book.query.get(book_id)
+    book.available = not book.available
+    db.session().commit()
+    print("Hello there")
+    return redirect(url_for("books_index"))
+
 
