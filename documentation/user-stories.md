@@ -2,6 +2,7 @@
 ## Normal user
 Normal users can
 * browse and filter books based on ratings, popularity, genre, author ...
+* search books
 * review books
   * 0-5 score
   * (optional) text 
