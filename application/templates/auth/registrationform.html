@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('auth_new') }}">
+  <table>
+    <tr>
+      <td>
+	    {{ form.name.label }}
+      </td>
+      <td>
+	    {{ form.name }}
+      </td>
+      {% for error in form.name.errors %}
+        <p>Error in field name: {{ error }}</p>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td>
+	{{ form.username.label }}
+      </td>
+      <td>
+	{{ form.username }}
+      </td>
+      {% for error in form.username.errors %}
+        <p>Error in field username: {{ error }}</p>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td>
+	{{ form.password.label }}
+      </td>
+      <td>
+	{{ form.password }}
+      </td>
+      {% for error in form.password.errors %}
+        <p>Error in field password: {{ error }}</p>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td colspan="2">
+	<input type="submit" value="Create account"/>
+      </td>
+    </tr>
+</form>
+
+
+{% endblock %}

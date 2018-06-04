@@ -6,13 +6,23 @@
   </head>
 
   <body>
+    {% if current_user.is_authenticated %}
+    <p> logged in as {{current_user.name }}
+    <a href="{{ url_for('auth_logout') }}">Log out</a>
+    </p>
+    {% else %}
+    <p>
+      <a href="{{ url_for('auth_login') }}">Log in</a>
+      <a href="{{ url_for('auth_new') }}">Create account</a>
+    </p>
+    {% endif %}
     <ul>
       <li><a href="{{ url_for('books_index') }}">List books</a></li>
       <li><a href="{{ url_for('books_form') }}">Add a book</a></li>
     </ul>
     {% block body %}
     <p>
-  Tähän tuodaan sisältö muualta.
+      Page content
     </p>
     {% endblock %}
   </body>

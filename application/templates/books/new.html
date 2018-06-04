@@ -2,10 +2,17 @@
 
 {% block body %}
 <form method="POST" action={{ url_for('books_create') }}>
-    Title:<br>
-    <input type="text" name="title" /> <br>
-    Author:<br>
-    <input type="text" name="author" />
+    {{ form.title.label }}
+    {{ form.title}}
+    {% for error in form.title.errors %}
+        <div>{{ error }}</div>
+    {% endfor %}
+    <br>
+    {{ form.author.label }}
+    {{ form.author }}
+    {% for error in form.author.errors %}
+        <div>{{ error }}</div>
+    {% endfor %}
     <br>
     <input type="submit" value="Add a book" />
 </form>

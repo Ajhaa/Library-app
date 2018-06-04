@@ -1,6 +1,8 @@
-from application import app, db
 from flask import render_template, request, redirect, url_for
+
+from application import app, db
 from application.books.models import Book
+from application.books.forms import BookForm
 
 @app.route("/books", methods=["GET"])
 def books_index():
@@ -8,11 +10,16 @@ def books_index():
 
 @app.route("/books/new")
 def books_form():
-    return render_template("books/new.html")
+    return render_template("books/new.html", form = BookForm())
 
 @app.route("/books/", methods=["POST"])
 def books_create():
-    new_book = Book(request.form.get("title"), request.form.get("author"))
+    form = BookForm(request.form)
+    if not form.validate():
+        return render_template("books/new.html", form = form)
+    title = form.title.data
+    author = form.author.data
+    new_book = Book(title, author)
 
     db.session().add(new_book)
     db.session().commit()
