@@ -34,4 +34,11 @@ def change_availability(book_id):
     print("Hello there")
     return redirect(url_for("books_index"))
 
+@app.route("/books/<book_id>/delete/", methods=["POST"])
+def delete_book(book_id):
+    book = Book.query.get(book_id)
+    db.session().delete(book)
+    db.session().commit()
+    return redirect(url_for("books_index"))
+
 
