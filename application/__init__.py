@@ -12,17 +12,13 @@ else:
     app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
-
-from application.author import models
-from application.books import models
-from application.auth import models
-
-db.create_all()
-
+from application import views
 from application.auth import views
 from application.books import views
 from application.author import views
-from application import views
+from application.author import models
+from application.books import models
+from application.auth import models
 
 
 from application.auth.models import User

@@ -1,8 +1,9 @@
-from flask import render_template
+from flask import redirect, url_for
 from application import app
 
 items = ["a", "b", "c"]
 
 @app.route("/")
 def index():
-    return render_template("index.html", items=items)
+    print("hello")
+    return redirect(url_for('books_index'))
