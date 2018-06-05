@@ -4,7 +4,8 @@
     <h4>Authors</h4>
     <ul>
         {% for author in authors %}
-            <li>{{ author }}</li>
+            <li><a href="{{ url_for('show_author', author_id=author.id) }}">{{ author }}</a></li>
         {% endfor %}
     </ul>
+    <a href="{{ url_for('author_create') }}">Add a new author</a>
 {% endblock %}

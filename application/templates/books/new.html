@@ -10,6 +10,7 @@
     <br>
     {{ form.author.label }}
     {{ form.author }}
+    <a href="{{ url_for('author_create') }}">new author</a>
     {% for error in form.author.errors %}
         <div>{{ error }}</div>
     {% endfor %}

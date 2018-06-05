@@ -2,24 +2,35 @@ from flask import render_template, request, redirect, url_for
 
 from application import app, db
 from application.books.models import Book
+from application.author.models import Author
 from application.books.forms import BookForm
 
 @app.route("/books", methods=["GET"])
 def books_index():
+    books = []
+    for book in Book.query.all():
+        books.append((book))
     return render_template("books/list.html", books = Book.query.all())
 
 @app.route("/books/new")
 def books_form():
-    return render_template("books/new.html", form = BookForm())
+    authors = []
+    for author in Author.query.all():
+        authors.append((author.id, author.name))
+    form = BookForm()
+    form.author.choices = authors
+    return render_template("books/new.html", form = form)
 
 @app.route("/books/", methods=["POST"])
 def books_create():
     form = BookForm(request.form)
-    if not form.validate():
-        return render_template("books/new.html", form = form)
+    print(form.author.data)
+   # if not form.validate():
+    #    print(form)
+    #    return render_template("books/new.html", form = form)
     title = form.title.data
-    author = form.author.data
-    new_book = Book(title, author)
+    new_book = Book(title)
+    new_book.author_id = form.author.data
 
     db.session().add(new_book)
     db.session().commit()

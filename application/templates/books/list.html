@@ -4,7 +4,7 @@
     <div>
         {% for book in books %}
         <div>
-            {{ book }}
+            {{ book.title }} by <a href="{{ url_for('show_author', author_id = book.author.id)}}">{{book.author}}</a>; availability: {{book.available}}
             <form method="POST" action="{{ url_for ('change_availability', book_id=book.id) }}">
                 <input type="submit" value="change availability"/>
             </form>

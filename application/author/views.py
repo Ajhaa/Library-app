@@ -21,3 +21,7 @@ def author_create():
 @app.route("/author")
 def author_list():
     return render_template("author/list.html", authors=Author.query.all())
+
+@app.route("/author/<author_id>")
+def show_author(author_id):
+    return render_template("author/author.html", author=Author.query.get(author_id))

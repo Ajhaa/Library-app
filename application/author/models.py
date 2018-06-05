@@ -6,7 +6,7 @@ class Author(db.Model):
     name = db.Column(db.String, nullable=False)
     birthdate = db.Column(db.DateTime)
 
-    books = db.relationship("Book", backref='account', lazy=True)
+    books = db.relationship("Book", lazy=True)
 
     def __init__(self, name, birthdate):
         self.name = name

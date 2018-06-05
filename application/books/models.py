@@ -8,11 +8,9 @@ class Book(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'),
                           nullable=False)
 
+    author = db.relationship("Author", lazy=True)
 
-
-    def __init__(self, title, author):
+    def __init__(self, title):
         self.title = title
         self.available = False
 
-    def __str__(self):
-        return "%s: %s, available: %s" % (self.author, self.title, self.available)
