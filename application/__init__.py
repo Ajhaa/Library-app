@@ -14,6 +14,8 @@ else:
 db = SQLAlchemy(app)
 
 from application import views
+from application.author import models
+from application.author import views
 from application.books import models
 from application.books import views
 from application.auth import models

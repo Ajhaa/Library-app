@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('author_create') }}">
+    <div>
+        {{ form.name.label }}
+        {{ form.name }}
+    </div>
+    <div>
+        {{ form.birthdate.label }}
+        {{ form.birthdate }}
+    </div>
+    <div>
+        <input type="submit" value="Add author" />
+    </div>
+</form>
+
+{% endblock %}

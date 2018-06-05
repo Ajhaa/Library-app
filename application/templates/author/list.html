@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h4>Authors</h4>
+    <ul>
+        {% for author in authors %}
+            <li>{{ author }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
