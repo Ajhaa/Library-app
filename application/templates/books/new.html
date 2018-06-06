@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action={{ url_for('books_create') }}>
+<form method="POST" action={{ url_for('books_new') }}>
     {{ form.title.label }}
     {{ form.title}}
     {% for error in form.title.errors %}
@@ -10,7 +10,7 @@
     <br>
     {{ form.author.label }}
     {{ form.author }}
-    <a href="{{ url_for('author_create') }}">new author</a>
+    <a href="{{ url_for('author_new') }}">new author</a>
     {% for error in form.author.errors %}
         <div>{{ error }}</div>
     {% endfor %}

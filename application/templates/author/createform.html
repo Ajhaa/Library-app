@@ -1,16 +1,21 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('author_create') }}">
+<form method="POST" action="{{ url_for('author_new') }}">
     <div>
         {{ form.name.label }}
         {{ form.name }}
     </div>
-
+    {% for error in form.name.errors %}
+        <div>{{ error }}</div>
+    {% endfor %}
     <div>
         {{ form.birthdate.label }} (yyyy-mm-dd)
         {{ form.birthdate }}
     </div>
+    {% for error in form.birthdate.errors %}
+        <div>{{ error }}</div>
+    {% endfor %}
     <div>
         <input type="submit" value="Add author" />
     </div>

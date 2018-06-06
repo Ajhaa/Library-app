@@ -4,11 +4,11 @@
     <div>
         {% for book in books %}
         <div>
-            {{ book.title }} by <a href="{{ url_for('show_author', author_id = book.author.id)}}">{{book.author}}</a>; availability: {{book.available}}
+            {{ book.title }} by <a href="{{ url_for('author_show', author_id = book.author.id)}}">{{book.author}}</a>; availability: {{book.available}}
             <form method="POST" action="{{ url_for ('change_availability', book_id=book.id) }}">
                 <input type="submit" value="change availability"/>
             </form>
-            <form method="POST" action="{{ url_for ('delete_book', book_id=book.id) }}">
+            <form method="POST" action="{{ url_for ('book_delete', book_id=book.id) }}">
                     <input type="submit" value="delete"/>
             </form>
         </div>
