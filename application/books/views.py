@@ -43,6 +43,11 @@ def change_availability(book_id):
     print("Hello there")
     return redirect(url_for("books_index"))
 
+@app.route("/books/<book_id>", methods=["GET"])
+def book_show(book_id):
+    score = Book.average_score(book_id)
+    return render_template("books/book.html", book = Book.query.get(book_id), score = score)
+
 @app.route("/books/<book_id>/delete/", methods=["POST"])
 @login_required
 def book_delete(book_id):

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h2>{{ book.title }}</h2>
+    <h3>by <a href="{{ url_for('author_show', author_id = book.author.id) }}">{{ book.author.name }}</a></h3>
+    <div>
+        <h4><a href="{{ url_for('reviews_new', book_id = book.id)}}">Review this book</a></h4>
+        <h4>Average score: {{ score }}</h4>
+        <h4>Reviews:</h4>
+        {% for review in book.reviews %}
+            <div>{{ review.score }}</div>
+            <div>{{ review.text }}</div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
