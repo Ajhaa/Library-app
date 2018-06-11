@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h4>New Book</h4>
 <form method="POST" action={{ url_for('books_new') }}>
     {{ form.title.label }}
     {{ form.title}}

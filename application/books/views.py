@@ -4,6 +4,7 @@ from flask_login import login_required
 from application import app, db
 from application.books.models import Book
 from application.author.models import Author
+from application.reviews.models import Review
 from application.books.forms import BookForm
 
 @app.route("/books", methods=["GET"])
@@ -41,7 +42,7 @@ def change_availability(book_id):
     book.available = not book.available
     db.session().commit()
     print("Hello there")
-    return redirect(url_for("books_index"))
+    return redirect(url_for("book_show", book_id=book_id))
 
 @app.route("/books/<book_id>", methods=["GET"])
 def book_show(book_id):
@@ -51,7 +52,13 @@ def book_show(book_id):
 @app.route("/books/<book_id>/delete/", methods=["POST"])
 @login_required
 def book_delete(book_id):
+    print("TOimiiko")
     book = Book.query.get(book_id)
+    reviews = Review.query.all()
+    for review in reviews:
+        if int(review.book_id) == int(book_id):
+            db.session().delete(review)
+
     db.session().delete(book)
     db.session().commit()
     return redirect(url_for("books_index"))

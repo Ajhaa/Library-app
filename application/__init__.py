@@ -12,6 +12,7 @@ else:
     app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
+
 from application import views
 from application.auth import views
 from application.books import views
