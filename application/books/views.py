@@ -47,7 +47,7 @@ def change_availability(book_id):
 @app.route("/books/<book_id>", methods=["GET"])
 def book_show(book_id):
     score = Book.average_score(book_id)
-    return render_template("books/book.html", book = Book.query.get(book_id), score = score)
+    return render_template("books/book.html", book = Book.query.get(book_id), score = "%.2f" % score)
 
 @app.route("/books/<book_id>/delete/", methods=["POST"])
 @login_required

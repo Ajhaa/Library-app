@@ -27,4 +27,4 @@ def author_list():
 
 @app.route("/author/<author_id>")
 def author_show(author_id):
-    return render_template("author/author.html", author=Author.query.get(author_id))
+    return render_template("author/author.html", author=Author.query.get(author_id), score = "%.2f" % Author.average_score(author_id))

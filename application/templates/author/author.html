@@ -3,6 +3,7 @@
 {% block body %}
     <h2>{{ author.name }}</h2>
     <div>
+        <p>Average review score (individual reviews): {{ score }}</p>
         <h4>Books:</h4>
         {% for book in author.books %}
             <div>{{ book.title }}</div>
