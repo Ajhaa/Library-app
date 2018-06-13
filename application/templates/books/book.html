@@ -2,7 +2,7 @@
 
 {% block body %}
     <h4>{{ book.title }}</h4>
-    <h4>by <a href="{{ url_for('author_show', author_id = book.author.id) }}">{{ book.author.name }}</a></h4>
+    <h4>by <a href="{{ url_for('authors_show', author_id = book.author.id) }}">{{ book.author.name }}</a></h4>
     <div>
         <a href="{{ url_for('reviews_new', book_id = book.id)}}">Review this book</a>
         {% if book.available %}
@@ -20,7 +20,7 @@
     <form method="POST" action="{{ url_for ('change_availability', book_id=book.id) }}">
         <input type="submit" value="change availability"/>
     </form>
-    <form method="POST" action="{{ url_for ('book_delete', book_id=book.id) }}">
+    <form method="POST" action="{{ url_for ('books_delete', book_id=book.id) }}">
         <input type="submit" value="delete"/>
     </form>
 

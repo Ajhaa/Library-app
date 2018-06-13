@@ -5,8 +5,8 @@
     <div>
         {% for book in books %}
         <div>
-            <a href="{{ url_for('book_show', book_id = book.id)}}">{{ book.title }}</a>
-            by <a href="{{ url_for('author_show', author_id = book.author.id)}}">{{book.author}}</a>
+            <a href="{{ url_for('books_show', book_id = book.id)}}">{{ book.title }}</a>
+            by <a href="{{ url_for('authors_show', author_id = book.author.id)}}">{{book.author}}</a>
         </div>
         {% endfor %}
     </div>

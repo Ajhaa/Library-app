@@ -18,10 +18,10 @@
             <a class="nav-link" href="{{ url_for('books_form') }}">Add a book</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('author_list')}}">List authors</a>
+            <a class="nav-link" href="{{ url_for('authors_list')}}">List authors</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('author_new')}}">Add an author</a>
+              <a class="nav-link" href="{{ url_for('authors_new')}}">Add an author</a>
             </li>
         </ul>
         <div class="form-inline mt-2 mt-md-0">
@@ -29,6 +29,8 @@
             <a href="{{ url_for('auth_logout') }}">Logged in as {{ current_user.name }} -- Logout</a>
             {% else %}
             <a href="{{ url_for('auth_login') }}">Login</a>
+            &nbsp;
+            <a href="{{ url_for('auth_new')}}">Register</a>
             {% endif %}
         </div>
       </div>

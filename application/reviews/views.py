@@ -21,5 +21,5 @@ def reviews_new(book_id):
 
     db.session().add(new_review)
     db.session().commit()
-    return redirect(url_for("book_show", book_id = book_id))
+    return redirect(url_for("books_show", book_id = book_id))
 

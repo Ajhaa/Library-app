@@ -1,0 +1,36 @@
+from flask import render_template, request, redirect, url_for
+from flask_login import login_required
+
+from application import app, db
+from application.authors.forms import AuthorForm
+from application.authors.models import Author
+
+@app.route("/authors/new", methods = ["POST", "GET"])
+@login_required
+def authors_new():
+    if request.method == "GET":
+        return render_template("authors/new.html", form = AuthorForm())
+
+    form = AuthorForm(request.form)
+
+    if not form.validate():
+        return render_template("authors/new.html", form = form)
+        
+    name = form.name.data
+    birthdate = form.birthdate.data
+    new_author = Author(name, birthdate)
+
+    db.session().add(new_author)
+    db.session().commit()
+    return redirect(url_for("authors_list"))
+
+@app.route("/authors")
+def authors_list():
+    return render_template("authors/list.html", authors=Author.query.all())
+
+@app.route("/authors/<author_id>")
+def authors_show(author_id):
+    score = Author.average_score(author_id)
+    if score != None:
+        score = "%.2f" % score
+    return render_template("authors/author.html", author=Author.query.get(author_id), score = score)
