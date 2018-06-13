@@ -2,9 +2,9 @@
 
 {% block body %}
     <h4>Authors</h4>
-    <ul>
+    <div class="container-fluid">
         {% for author in authors %}
-            <li><a href="{{ url_for('authors_show', author_id=author.id) }}">{{ author }}</a></li>
+            <div class="list list-author"><a href="{{ url_for('authors_show', author_id=author.id) }}">{{ author }}</a></div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

@@ -7,10 +7,13 @@ from application.auth.forms import LoginForm, NewUserForm
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
+    print("NEXT: %s" % request.args.get('next'))
+
     if request.method == "GET":
         return render_template("auth/loginform.html", form = LoginForm())
 
     form = LoginForm(request.form)
+    print("NEXT: %s" % request.args.get('next'))
 
     user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
     if not user:
@@ -19,7 +22,7 @@ def auth_login():
 
     print("User " + user.name + " was authenticated")
     login_user(user)
-    return redirect(url_for("index"))
+    return redirect_dest(home=url_for("index"))
 
 @app.route("/auth/logout")
 def auth_logout():
@@ -45,3 +48,9 @@ def auth_new():
     db.session().commit()
     return redirect(url_for("index"))
 
+def redirect_dest(home):
+    dest_url = request.args.get('next')
+    
+    if not dest_url:
+        dest_url = home
+    return redirect(dest_url)

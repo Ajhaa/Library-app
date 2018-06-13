@@ -4,9 +4,12 @@
     <h4>Books:</h4>
     <div>
         {% for book in books %}
-        <div>
-            <a href="{{ url_for('books_show', book_id = book.id)}}">{{ book.title }}</a>
-            by <a href="{{ url_for('authors_show', author_id = book.author.id)}}">{{book.author}}</a>
+        <div class="container-fluid">
+            <div class="list">
+                <a href="{{ url_for('books_show', book_id = book.id)}}">{{ book.title }}</a>
+                <br>
+                by <a href="{{ url_for('authors_show', author_id = book.author.id)}}">{{book.author}}</a>
+            </div>
         </div>
         {% endfor %}
     </div>

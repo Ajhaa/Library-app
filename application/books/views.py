@@ -54,13 +54,10 @@ def books_show(book_id):
 @login_required
 def books_delete(book_id):
     book = Book.query.get(book_id)
-    reviews = Review.query.all()
-    for review in reviews:
-        if int(review.book_id) == int(book_id):
-            db.session().delete(review)
-
+    
     db.session().delete(book)
     db.session().commit()
+
     return redirect(url_for("books_index"))
 
 

@@ -15,13 +15,23 @@ def authors_new():
 
     if not form.validate():
         return render_template("authors/new.html", form = form)
-        
+
     name = form.name.data
     birthdate = form.birthdate.data
     new_author = Author(name, birthdate)
 
     db.session().add(new_author)
     db.session().commit()
+    return redirect(url_for("authors_list"))
+
+@app.route("/authors/<author_id>/delete", methods = ["POST"])
+@login_required
+def authors_delete(author_id):
+    author = Author.query.get(author_id)
+
+    db.session().delete(author)
+    db.session().commit()
+
     return redirect(url_for("authors_list"))
 
 @app.route("/authors")
@@ -34,3 +44,5 @@ def authors_show(author_id):
     if score != None:
         score = "%.2f" % score
     return render_template("authors/author.html", author=Author.query.get(author_id), score = score)
+
+

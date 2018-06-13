@@ -11,7 +11,7 @@ class Book(db.Model):
                           nullable=False)
 
     author = db.relationship("Author", lazy=True)
-    reviews = db.relationship("Review", lazy=True)
+    reviews = db.relationship("Review", cascade="delete", lazy=True)
 
 
     def __init__(self, title):

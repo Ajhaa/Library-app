@@ -1,0 +1,11 @@
+.list {
+  background-color:lightblue;
+  outline: 1px solid white;
+  padding: 5px;
+  width: 20%;
+  overflow-wrap: break-word;
+}
+
+.list-author {
+  width: 15%;
+}
