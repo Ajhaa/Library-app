@@ -24,7 +24,7 @@ def authors_new():
     db.session().commit()
     return redirect(url_for("authors_list"))
 
-@app.route("/authors/<author_id>/delete", methods = ["POST"])
+@app.route("/authors/<author_id>/delete", methods = ["POST", "GET"])
 @login_required
 def authors_delete(author_id):
     author = Author.query.get(author_id)

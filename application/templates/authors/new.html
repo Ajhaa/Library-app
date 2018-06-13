@@ -3,7 +3,7 @@
 {% block body %}
 <h4>New author</h4>
 
-<form method="POST" action="{{ url_for('authors_new') }}">
+<form method="POST" action={{ url_for('authors_new') }}>
     <div>
         {{ form.name.label }}
         {{ form.name }}
