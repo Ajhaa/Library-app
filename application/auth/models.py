@@ -8,10 +8,9 @@ class Role(db.Model):
         self.role = role
 
     @staticmethod
-    def init_roles():
-        user = Role("USER")
-        admin = Role("ADMIN")
-        Role.query.delete()
+    def init_roles(*args, **kwargs):
+        user = Role(role="USER")
+        admin = Role(role="ADMIN")
         db.session().add(user)
         db.session().add(admin)
         db.session().commit()

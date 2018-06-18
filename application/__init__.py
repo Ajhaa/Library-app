@@ -88,7 +88,10 @@ def handle_needs_login():
     next=url_for(request.endpoint,**request.view_args)
     return redirect(url_for('auth_login', next=next))
 
+from sqlalchemy import event
+
+event.listen(Role.__table__, 'after_create', Role.init_roles)
+
 
 db.create_all()
 
-Role.init_roles()
