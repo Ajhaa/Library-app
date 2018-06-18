@@ -9,10 +9,9 @@ class Loan(db.Model):
   book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
 
+  book = db.relationship("Book", lazy=True)
+
   def __init__(self, end_date):
     self.end_date = end_date
-
-  def is_active(self):
-    return time.today() <= self.end_date  
 
       

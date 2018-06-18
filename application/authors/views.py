@@ -1,12 +1,11 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required
 
-from application import app, db
+from application import app, db, login_required
 from application.authors.forms import AuthorForm
 from application.authors.models import Author
 
 @app.route("/authors/new", methods = ["POST", "GET"])
-@login_required
+@login_required()
 def authors_new():
     if request.method == "GET":
         return render_template("authors/new.html", form = AuthorForm())
@@ -25,7 +24,7 @@ def authors_new():
     return redirect(url_for("authors_list"))
 
 @app.route("/authors/<author_id>/delete", methods = ["POST", "GET"])
-@login_required
+@login_required(role="ADMIN")
 def authors_delete(author_id):
     author = Author.query.get(author_id)
 

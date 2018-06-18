@@ -37,6 +37,17 @@
       {% endfor %}
     </tr>
     <tr>
+        <td>
+    {{ form.role.label }}
+        </td>
+        <td>
+    {{ form.role }}
+        </td>
+        {% for error in form.role.errors %}
+          <p>Error in field role: {{ error }}</p>
+        {% endfor %}
+      </tr>
+    <tr>
       <td colspan="2">
 	<input type="submit" value="Create account"/>
       </td>

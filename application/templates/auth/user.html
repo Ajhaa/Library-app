@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h4>{{ user.username}}</h4>
+    <h5>Loans: </h5>
+    {% for loan in user.loans %}
+      <p>{{ loan.book.title }} ({{ loan.end_date }})</p>
+    {% endfor %}  
+{% endblock %}

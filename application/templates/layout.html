@@ -17,15 +17,19 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('books_index') }}">List books</a>
           </li>
+          {% if current_user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('books_form') }}">Add a book</a>
           </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('authors_list')}}">List authors</a>
           </li>
+          {% if current_user.is_authenticated %}
           <li class="nav-item">
               <a class="nav-link" href="{{ url_for('authors_new')}}">Add an author</a>
-            </li>
+          </li>
+          {% endif %}
         </ul>
         <div class="form-inline mt-2 mt-md-0">
             {% if current_user.is_authenticated %}

@@ -1,5 +1,12 @@
 from application import db
 
+class Role(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    role = db.Column(db.String, nullable=False)
+
+    def __init__(self, role):
+        self.role = role   
+
 class User(db.Model):
     __tablename__ = "account"
 
@@ -11,6 +18,12 @@ class User(db.Model):
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+
+    role_id = db.Column(db.Integer, db.ForeignKey("role.id"))
+
+    role = db.relationship("Role", lazy=True)
+
+    loans = db.relationship("Loan", lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name
@@ -28,3 +41,7 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+    def roles(self):
+        return [self.role.role]    
+       

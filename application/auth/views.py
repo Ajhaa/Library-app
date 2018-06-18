@@ -1,5 +1,5 @@
-from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask import render_template, request, redirect, url_for, flash
+from flask_login import login_user, logout_user, current_user, login_required
 
 from application import app, db
 from application.auth.models import User
@@ -21,6 +21,8 @@ def auth_login():
                                error = "Wrong username or password")
 
     print("User " + user.name + " was authenticated")
+    print("users role id is: " + str(user.role_id))
+    print("users roles is: " + str(user.roles()))
     login_user(user)
     return redirect_dest(home=url_for("index"))
 
@@ -41,12 +43,21 @@ def auth_new():
     name = form.name.data
     username = form.username.data
     password = form.password.data
+    role_id = int(form.role.data)
 
     new_user = User(name, username, password)
+    new_user.role_id = role_id
 
     db.session().add(new_user)
     db.session().commit()
     return redirect(url_for("index"))
+
+@app.route("/user/<user_id>")
+@login_required
+def auth_user_page(user_id):
+    if int(current_user.id) != int(user_id):
+        return render_template("auth/user_error.html")
+    return render_template("auth/user.html", user=User.query.get(user_id))        
 
 def redirect_dest(home):
     dest_url = request.args.get('next')
