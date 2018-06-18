@@ -41,7 +41,7 @@ def change_availability(book_id):
     book = Book.query.get(book_id)
     book.available = not book.available
     db.session().commit()
-    return redirect(url_for("book_show", book_id=book_id))
+    return redirect(url_for("books_show", book_id=book_id))
 
 @app.route("/books/<book_id>", methods=["GET"])
 def books_show(book_id):
