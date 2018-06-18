@@ -5,7 +5,7 @@ from application.authors.forms import AuthorForm
 from application.authors.models import Author
 
 @app.route("/authors/new", methods = ["POST", "GET"])
-@login_required()
+@login_required(role="ADMIN")
 def authors_new():
     if request.method == "GET":
         return render_template("authors/new.html", form = AuthorForm())

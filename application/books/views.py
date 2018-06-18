@@ -1,7 +1,6 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required
 
-from application import app, db
+from application import app, db, login_required
 from application.books.models import Book
 from application.authors.models import Author
 from application.reviews.models import Review
@@ -12,14 +11,14 @@ def books_index():
     return render_template("books/list.html", books = Book.query.all())
 
 @app.route("/books/new")
-@login_required
+@login_required(role="ADMIN")
 def books_form():
     form = BookForm()
     form.update_choices(Author.query.all())
     return render_template("books/new.html", form = form)
 
 @app.route("/books/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def books_new():
     form = BookForm(request.form)
     form.update_choices(Author.query.all())
@@ -36,7 +35,7 @@ def books_new():
     return redirect(url_for("books_index"))
 
 @app.route("/books/<book_id>/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def change_availability(book_id):
     book = Book.query.get(book_id)
     book.available = not book.available
@@ -46,15 +45,15 @@ def change_availability(book_id):
 @app.route("/books/<book_id>", methods=["GET"])
 def books_show(book_id):
     score = Book.average_score(book_id)
-    if score != None: 
+    if score != None:
         score = "%.2f" % score
     return render_template("books/book.html", book = Book.query.get(book_id), score = score)
 
 @app.route("/books/<book_id>/delete/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def books_delete(book_id):
     book = Book.query.get(book_id)
-    
+
     db.session().delete(book)
     db.session().commit()
 

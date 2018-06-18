@@ -5,7 +5,16 @@ class Role(db.Model):
     role = db.Column(db.String, nullable=False)
 
     def __init__(self, role):
-        self.role = role   
+        self.role = role
+
+    @staticmethod
+    def init_roles():
+        user = Role("USER")
+        admin = Role("ADMIN")
+        Role.query.delete()
+        db.session().add(user)
+        db.session().add(admin)
+        db.session().commit()
 
 class User(db.Model):
     __tablename__ = "account"
@@ -43,5 +52,5 @@ class User(db.Model):
         return True
 
     def roles(self):
-        return [self.role.role]    
-       
+        return [self.role.role]
+

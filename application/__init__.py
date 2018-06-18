@@ -34,12 +34,12 @@ def login_required(role="ANY"):
         def decorated_view(*args, **kwargs):
             if not current_user.is_authenticated():
                 return login_manager.unauthorized()
-            
+
             unauthorized = False
 
             if role != "ANY":
                 unauthorized = True
-                
+
                 for user_role in current_user.roles():
                     if user_role == role:
                         unauthorized = False
@@ -47,10 +47,11 @@ def login_required(role="ANY"):
 
             if unauthorized:
                 return login_manager.unauthorized()
-            
+
             return fn(*args, **kwargs)
         return decorated_view
     return wrapper
+
 
 
 
@@ -73,7 +74,7 @@ from application.auth import models
 from application.auth import views
 
 
-from application.auth.models import User
+from application.auth.models import User, Role
 
 
 
@@ -89,3 +90,5 @@ def handle_needs_login():
 
 
 db.create_all()
+
+Role.init_roles()
