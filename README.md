@@ -1,6 +1,6 @@
 # Library App
 [Heroku](https://tsoha-library-app.herokuapp.com/)  
-[Database model](https://github.com/Ajhaa/Library-app/tree/master/documentation/db_model.png)  
+[Database model](https://github.com/Ajhaa/Library-app/tree/master/documentation/db_model.md)  
 [User stories](https://github.com/Ajhaa/Library-app/tree/master/documentation/user-stories.md)  
 [Installation and usage](https://github.com/Ajhaa/Library-app/blob/master/documentation/installation-and-usage.md)
 
