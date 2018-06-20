@@ -2,7 +2,7 @@
 
 {% block body %}
     <h2>{{ author.name }}</h2>
-    {% if current_user.is_authenticated() %}
+    {% if current_user.is_authenticated %}
     <form method="POST" action="{{ url_for ('authors_delete', author_id=author.id) }}">
         <input type="submit" value="Delete this author"/>
     </form>
