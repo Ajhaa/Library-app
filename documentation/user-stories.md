@@ -17,7 +17,7 @@ Normal users:
 
 
 ## Admin
-Admins can
+Admins:  
 (completed)  
 * add new authors
 * add new books
