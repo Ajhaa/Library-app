@@ -16,6 +16,13 @@
         <div>{{ error }}</div>
     {% endfor %}
     <br>
+    {{ form.genre.label }}
+    {{ form.genre }}
+    <p>(select multiple with ctrl+click)</p>
+    {% for error in form.genre.errors %}
+        <div>{{ error }}</div>
+    {% endfor %}
+    <br>
     <input type="submit" value="Add a book" />
 </form>
 {% endblock %}

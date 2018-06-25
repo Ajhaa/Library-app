@@ -32,7 +32,7 @@ def login_required(role="ANY"):
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
-            if not current_user.is_authenticated():
+            if not current_user.is_authenticated:
                 return login_manager.unauthorized()
 
             unauthorized = False
@@ -73,6 +73,8 @@ from application.books import views
 from application.auth import models
 from application.auth import views
 
+from application.genres import models
+from application.genres import views
 
 from application.auth.models import User, Role
 
@@ -90,6 +92,7 @@ def handle_needs_login():
 
 from sqlalchemy import event
 
+# initialize hardcoded values to tables after table creation
 event.listen(Role.__table__, 'after_create', Role.init_roles)
 
 

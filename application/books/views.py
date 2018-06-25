@@ -5,6 +5,7 @@ from application.books.models import Book
 from application.authors.models import Author
 from application.reviews.models import Review
 from application.books.forms import BookForm
+from application.genres.models import Genre
 
 @app.route("/books", methods=["GET"])
 def books_index():
@@ -14,20 +15,23 @@ def books_index():
 @login_required(role="ADMIN")
 def books_form():
     form = BookForm()
-    form.update_choices(Author.query.all())
+    form.update_choices(Author.query.all(), Genre.query.all())
     return render_template("books/new.html", form = form)
 
 @app.route("/books/", methods=["POST"])
 @login_required(role="ADMIN")
 def books_new():
     form = BookForm(request.form)
-    form.update_choices(Author.query.all())
+    form.update_choices(Author.query.all(), Genre.query.all())
     if not form.validate():
         print(form)
         return render_template("books/new.html", form = form)
     title = form.title.data
     new_book = Book(title)
     new_book.author_id = form.author.data
+
+    for g in form.genre.data:
+        print(g)
 
     db.session().add(new_book)
     db.session().commit()

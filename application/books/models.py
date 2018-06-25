@@ -13,6 +13,8 @@ class Book(db.Model):
     author = db.relationship("Author", lazy=True)
     reviews = db.relationship("Review", cascade="delete", lazy=True)
 
+    genres = db.relationship("Genre", secondary="BookGenre", lazy=True)
+
 
     def __init__(self, title):
         self.title = title

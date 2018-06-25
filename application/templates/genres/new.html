@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h4>New Genre</h4>
+<form method="POST" action={{ url_for('genres_new') }}>
+    {{ form.name.label }}
+    {{ form.name}}
+    {% for error in form.name.errors %}
+        <div>{{ error }}</div>
+    {% endfor %}
+    <br>
+    <input type="submit" value="Add a genre" />
+</form>
+{% endblock %}
