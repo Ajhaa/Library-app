@@ -32,7 +32,7 @@ class Book(db.Model):
     def best_books():
         stmt = text("SELECT book.id, book.title, AVG(review.score) as avg FROM book, review"
                     " WHERE review.book_id = book.id"
-                    " GROUP BY book.title"
+                    " GROUP BY book.id"
                     " ORDER BY avg DESC"
                     " LIMIT 5")
         res = db.engine.execute(stmt)
@@ -47,7 +47,7 @@ class Book(db.Model):
     def top_loaned_books():
         stmt = text("SELECT book.id, book.title, COUNT(loan.id) as loans FROM book, loan"
                     " WHERE loan.book_id = book.id"
-                    " GROUP BY book.title"
+                    " GROUP BY book.id"
                     " ORDER BY loans desc"
                     " LIMIT 5")
         res = db.engine.execute(stmt)
