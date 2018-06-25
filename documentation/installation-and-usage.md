@@ -8,9 +8,7 @@
 
 ## Usage
 If you are not logged in, you can only view books and authors. Currently both admins and normal users can be created freely.
-Normal users, in addition to viewing, can also loan books and review them. the loan system is currently work in progress, and you
-can only views your loans in user information page, which is also work in progress. The user information page can be accessed by going
-to `/user/<user_id>`.  
+Normal users, in addition to viewing, can also loan books and review them. You can view your loans by going to your profile in the upper right corner.
 Reviews can be written from the view book-page.  
 Admins can create new books and authors, and also delete them. The delete button can be found from the individual view page of authors
 and books. Admins can also change the availability of books, which currently has no effect.
