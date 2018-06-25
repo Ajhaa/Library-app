@@ -1,9 +1,7 @@
-from flask import redirect, url_for
+from flask import render_template, url_for
 from application import app
-
-items = ["a", "b", "c"]
+from application.books.models import Book
 
 @app.route("/")
 def index():
-    print("hello")
-    return redirect(url_for('books_index'))
+    return render_template("index.html", by_rating = Book.best_books(), by_loans = Book.top_loaned_books())

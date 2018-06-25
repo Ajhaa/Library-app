@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h4>{{ genre.name }}</h4>
+    <h5>Books:</h5>
+    {% for book in genre.books %}
+        <a href="{{url_for('books_show', book_id=book.id)}}">{{ book.name }}</a>
+    {% endfor %}
+{% endblock %}

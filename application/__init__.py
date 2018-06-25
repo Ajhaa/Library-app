@@ -96,5 +96,8 @@ from sqlalchemy import event
 event.listen(Role.__table__, 'after_create', Role.init_roles)
 
 
-db.create_all()
+try:
+    db.create_all()
+except:
+    pass
 

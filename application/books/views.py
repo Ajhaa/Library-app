@@ -5,7 +5,7 @@ from application.books.models import Book
 from application.authors.models import Author
 from application.reviews.models import Review
 from application.books.forms import BookForm
-from application.genres.models import Genre
+from application.genres.models import Genre, BookGenre
 
 @app.route("/books", methods=["GET"])
 def books_index():
@@ -30,8 +30,9 @@ def books_new():
     new_book = Book(title)
     new_book.author_id = form.author.data
 
-    for g in form.genre.data:
-        print(g)
+    for id in form.genre.data:
+        genre = Genre.query.get(id)
+        new_book.genres.append(genre)
 
     db.session().add(new_book)
     db.session().commit()

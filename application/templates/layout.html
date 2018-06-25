@@ -11,7 +11,7 @@
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="#">Library</a>
+      <a class="navbar-brand" href="/">Library</a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -30,10 +30,16 @@
               <a class="nav-link" href="{{ url_for('authors_new')}}">Add an author</a>
           </li>
           {% endif %}
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('genres_new')}}">Add a genre</a>
+          </li>
+          {% endif %}
+
         </ul>
         <div class="form-inline mt-2 mt-md-0">
             {% if current_user.is_authenticated %}
-            Logged in as {{ current_user.name}} | &nbsp;
+            <div style="color: white" >Logged in as {{ current_user.name }} | </div>&nbsp;
             <a href="{{ url_for('auth_user_page', user_id = current_user.id) }}">View profile</a>
             --
             <a href="{{url_for('auth_logout')}}">Log out</a>

@@ -1,5 +1,5 @@
 from application import db
-from datetime import time
+from datetime import date
 
 class Loan(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -14,4 +14,6 @@ class Loan(db.Model):
   def __init__(self, end_date):
     self.end_date = end_date
 
-      
+  def is_active():
+    return date.today() > end_date
+
